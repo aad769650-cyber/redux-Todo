@@ -1,0 +1,61 @@
+import { useDispatch, useSelector } from "react-redux";
+import "../App.css"
+import { MdOutlineDeleteOutline } from "react-icons/md";
+import { addTask, deleteTask } from "../store";
+import { useState } from "react";
+export const Todo=()=>{
+
+
+    const Selector=useSelector((state)=> state.task)
+const [task,setTask]=useState("")
+    console.log(Selector);
+    const dispatch=useDispatch()
+
+
+//deleteLogic
+
+const handleDelete=(id)=>{
+    console.log(id);
+    dispatch(deleteTask(id))
+    
+}
+const handleSubmit=(e)=>{
+    e.preventDefault();
+
+dispatch(addTask(task))
+setTask("")
+}
+console.log(task);
+
+    return (
+        <section className="section">
+        {/* <h1>hello</h1> */}
+<h1>ToDo List</h1>
+        <div className="todo">
+
+     <form action="" onSubmit={(e)=>handleSubmit(e)}>
+               <div className="input">
+                <input type="text" placeholder="Add a Task..." value={task} onChange={(e)=>{setTask(e.target.value)}} />
+                <button className="btn">Add</button>
+            </div>
+     </form>
+
+
+            <ul className="todoUl">
+             {
+                Selector.map((curr,idx)=>{
+                       return (
+                    <>
+                    <li className="list">{idx}:{curr} <MdOutlineDeleteOutline className="del-icon" onClick={()=>handleDelete(idx)}/></li>
+                    </>  
+                    
+                    )
+                })
+             }
+               
+            </ul>
+
+        </div>
+        </section>
+    )
+}

@@ -1,0 +1,80 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+}
+section{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+flex-direction: column;
+  background: linear-gradient(to right, #4facfe, #00f2fe);
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+
+
+}
+
+.todo{
+    width: 20rem;
+    padding: 1rem;
+    min-height: 10rem;
+    /* height: 100%; */
+    margin-top: .5rem;
+    background:#fff;
+    border-radius: 1rem;
+
+}
+.list{
+    margin-top: .2rem;
+    padding: .3rem;
+list-style-type: none;
+background-color: aliceblue;
+   transition: background-color 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+  border-radius: 1rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list:hover{
+      background-color: #4facfe;
+      color: white;
+        transform: scale(1.05);
+
+}
+    .btn {
+      background: linear-gradient(to right, #4facfe, #00f2fe);
+      color: white;
+      border: none;
+      padding: .2rem 1rem;
+      font-size: 1.2rem;
+      border-radius: .5rem;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .btn:hover {
+      background: linear-gradient(to right, #00f2fe, #4facfe);
+      transform: scale(1.05);
+    }
+
+    .del-icon{
+        margin-right: 0.3rem;
+        font-size: 1.2rem;
+    }
+
+    .input{
+        input {
+            padding: 0.3rem;
+            border-radius: .3rem;
+          margin-right: .3rem;
+        }
+
+    }
