@@ -1,7 +1,8 @@
 // import { createStore } from "redux";
 
 import { composeWithDevTools } from "@redux-devtools/extension";
-import { createStore } from "redux";
+import { applyMiddleware, createStore } from "redux";
+import { thunk } from "redux-thunk";
 // import { composeWithDevTools } from 'redux-devtools-extension';
 // //  const Store=()=>{
 //     console.log("hello redux");
@@ -108,6 +109,7 @@ const initialState={
 
 const Add_Task="task/add";
 const Delete_Task="task/delete";
+const Fetch_Data="task/fetch";
 const reducer=(state=initialState,action)=>{
 
 const updated=state.task.filter((curr,idx)=>{
@@ -130,6 +132,12 @@ switch(action.type){
 {task:updated}
 
         );
+
+
+        case Fetch_Data:
+            return(
+                {...state,task:[...state.task,...action.payload]}
+            )
         default:
             return state
 }
@@ -153,7 +161,37 @@ export const deleteTask=(id)=>{
 }
 
 
-export const store=createStore(reducer,composeWithDevTools())
+export const store=createStore(reducer,composeWithDevTools(applyMiddleware(thunk)))
+
+
+
+export const fetchTask=()=>{
+return async (dispatch) => {
+    try {
+        
+const res=await fetch(` https://jsonplaceholder.typicode.com/posts?_limit=3`)
+const data=await res.json();
+console.log(data);
+
+console.log(data.map((curr)=>curr.title));
+
+dispatch({type:Fetch_Data,payload:data.map((curr)=>curr.title)})
+
+    } catch (error) {
+        console.log(error);
+        
+    }
+}
+}
+
+
+
+
+
+
+
+
+
 
 // console.log("initial",store.getState());
 

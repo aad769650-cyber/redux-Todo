@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import "../App.css"
 import { MdOutlineDeleteOutline } from "react-icons/md";
-import { addTask, deleteTask } from "../store";
+import { addTask, deleteTask, fetchTask } from "../store";
 import { useState } from "react";
 export const Todo=()=>{
 
@@ -27,6 +27,13 @@ setTask("")
 }
 console.log(task);
 
+
+const handleFetch=()=>{
+    console.log("Clicked");
+    
+    dispatch(fetchTask())
+}
+
     return (
         <section className="section">
         {/* <h1>hello</h1> */}
@@ -38,8 +45,9 @@ console.log(task);
                 <input type="text" placeholder="Add a Task..." value={task} onChange={(e)=>{setTask(e.target.value)}} />
                 <button className="btn">Add</button>
             </div>
-     </form>
 
+     </form>
+ <button className="btn" onClick={handleFetch}>Fetch Task</button>
 
             <ul className="todoUl">
              {
