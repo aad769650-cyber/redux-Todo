@@ -1,6 +1,5 @@
 import { Todo } from "./Todo/Todo";
 
-
 const App=()=>{
   // console.log(store);
   

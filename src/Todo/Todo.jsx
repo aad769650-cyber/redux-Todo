@@ -1,18 +1,20 @@
 import { useDispatch, useSelector } from "react-redux";
 import "../App.css"
 import { MdOutlineDeleteOutline } from "react-icons/md";
-import { addTask, deleteTask, fetchTask } from "../store";
+
 import { useState } from "react";
+import { addTask, deleteTask } from "../features/task/taskSlice";
 export const Todo=()=>{
 
+console.log("Store");
 
-    const Selector=useSelector((state)=> state.task)
+    const Selector=useSelector((state)=> state.slice.task)
 const [task,setTask]=useState("")
     console.log(Selector);
     const dispatch=useDispatch()
 
 
-//deleteLogic
+// //deleteLogic
 
 const handleDelete=(id)=>{
     console.log(id);
@@ -28,11 +30,11 @@ setTask("")
 console.log(task);
 
 
-const handleFetch=()=>{
-    console.log("Clicked");
+// const handleFetch=()=>{
+//     console.log("Clicked");
     
-    dispatch(fetchTask())
-}
+//     dispatch(fetchTask())
+// }
 
     return (
         <section className="section">
@@ -47,7 +49,7 @@ const handleFetch=()=>{
             </div>
 
      </form>
- <button className="btn" onClick={handleFetch}>Fetch Task</button>
+ {/* <button className="btn" onClick={handleFetch}>Fetch Task</button> */}
 
             <ul className="todoUl">
              {
@@ -63,7 +65,7 @@ const handleFetch=()=>{
                
             </ul>
 
-        </div>
-        </section>
-    )
+         </div>
+         </section>
+     )
 }
